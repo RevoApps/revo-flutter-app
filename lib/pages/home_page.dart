@@ -5,7 +5,6 @@ import '../widgets/chat_list_item.dart';
 import '../pages/chat_page.dart';
 import '../data/school_data.dart';
 import '../widgets/student_stories.dart';
-import 'login_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -45,281 +44,191 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _logout() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Logout'),
-          content: const Text('Are you sure you want to logout?'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context); // Close dialog
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                  (route) => false, // Remove all previous routes
-                );
-              },
-              child: const Text(
-                'Logout',
-                style: TextStyle(color: Colors.red),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF2C3E50), // Dark blue-gray
-        elevation: 4,
-        shadowColor: Colors.black26,
-        title: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                color: const Color(0xFF3498DB),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Icon(
-                Icons.school,
-                color: Colors.white,
-                size: 20,
-              ),
-            ),
-            const SizedBox(width: 12),
-            const Text(
-              'RevoSchools',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0.3,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          Container(
-            margin: const EdgeInsets.only(right: 8),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: IconButton(
-              icon: const Icon(Icons.search, color: Colors.white),
-              onPressed: () {},
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(right: 8),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: IconButton(
-              icon: Icon(
-                isSorted ? Icons.sort_by_alpha : Icons.sort,
-                color: Colors.white,
-              ),
-              onPressed: sortChats,
-              tooltip: isSorted ? 'Reset order' : 'Sort alphabetically',
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(right: 8),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: PopupMenuButton<String>(
-              icon: const Icon(Icons.more_vert, color: Colors.white),
-              onSelected: (value) {
-                if (value == 'logout') {
-                  _logout();
-                }
-              },
-              itemBuilder: (BuildContext context) => [
-                const PopupMenuItem<String>(
-                  value: 'academic_calendar',
-                  child: Row(
-                    children: [
-                      Icon(Icons.calendar_today, size: 20, color: Color(0xFF2C3E50)),
-                      SizedBox(width: 12),
-                      Text('Academic Calendar'),
-                    ],
-                  ),
-                ),
-                const PopupMenuItem<String>(
-                  value: 'assignments',
-                  child: Row(
-                    children: [
-                      Icon(Icons.assignment, size: 20, color: Color(0xFF2C3E50)),
-                      SizedBox(width: 12),
-                      Text('All Assignments'),
-                    ],
-                  ),
-                ),
-                const PopupMenuItem<String>(
-                  value: 'grades',
-                  child: Row(
-                    children: [
-                      Icon(Icons.grade, size: 20, color: Color(0xFF2C3E50)),
-                      SizedBox(width: 12),
-                      Text('View Grades'),
-                    ],
-                  ),
-                ),
-                const PopupMenuItem<String>(
-                  value: 'attendance',
-                  child: Row(
-                    children: [
-                      Icon(Icons.person_pin_circle, size: 20, color: Color(0xFF2C3E50)),
-                      SizedBox(width: 12),
-                      Text('Attendance Report'),
-                    ],
-                  ),
-                ),
-                const PopupMenuItem<String>(
-                  value: 'settings',
-                  child: Row(
-                    children: [
-                      Icon(Icons.settings, size: 20, color: Color(0xFF2C3E50)),
-                      SizedBox(width: 12),
-                      Text('Settings'),
-                    ],
-                  ),
-                ),
-                const PopupMenuDivider(),
-                const PopupMenuItem<String>(
-                  value: 'logout',
-                  child: Row(
-                    children: [
-                      Icon(Icons.logout, size: 20, color: Colors.red),
-                      SizedBox(width: 12),
-                      Text(
-                        'Logout',
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
       body: Column(
         children: [
-          // Dashboard section
+          // Header section
           Container(
-            height: 100,
+            padding: const EdgeInsets.fromLTRB(16, 40, 16, 12),
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Color(0xFF2C3E50),
-                  Color(0xFF34495E),
+                  Color(0xFF8E24AA),
+                  Color(0xFF9C27B0),
                 ],
               ),
             ),
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25),
-                  topRight: Radius.circular(25),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
+                    // School Logo
                     Container(
-                      padding: const EdgeInsets.all(12),
+                      width: 50,
+                      height: 50,
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFF3498DB), Color(0xFF2980B9)],
-                        ),
-                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF3498DB).withOpacity(0.3),
+                            color: Colors.black.withOpacity(0.2),
                             blurRadius: 8,
-                            offset: const Offset(0, 4),
+                            offset: const Offset(0, 3),
                           ),
                         ],
                       ),
-                      child: const Icon(
-                        Icons.school,
-                        color: Colors.white,
-                        size: 24,
+                      child: const Center(
+                        child: Text(
+                          '🏫',
+                          style: TextStyle(fontSize: 28),
+                        ),
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    const SizedBox(width: 12),
                     const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Pathways Global School',
+                            'Ahmed Ali',
                             style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF2C3E50),
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(height: 2),
                           Text(
-                            'Kot ise khan',
+                            'Class: 10A | Roll No: 12345',
                             style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF3498DB),
+                              color: Colors.white70,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
                       ),
                     ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: IconButton(
+                        icon: Icon(
+                          isSorted ? Icons.sort_by_alpha : Icons.sort,
+                          color: Colors.white,
+                        ),
+                        onPressed: sortChats,
+                        tooltip: isSorted ? 'Reset order' : 'Sort alphabetically',
+                      ),
+                    ),
                   ],
                 ),
-              ),
+              ],
             ),
           ),
-          // Student Stories Section
-          Container(
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(16, 12, 16, 8),
-                  child: Text(
-                    'Student Stories',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2C3E50),
+              // Dashboard section
+              Container(
+                height: 100,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFF8E24AA),
+                      Color(0xFF9C27B0),
+                    ],
+                  ),
+                ),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        // Left Column - School Logo
+                        Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.08),
+                                blurRadius: 6,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: const Center(
+                            child: Text(
+                              '🏫',
+                              style: TextStyle(fontSize: 26),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        // Right Column - School Information
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // School Name
+                              const Text(
+                                'Pathways Global School',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF2C3E50),
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              // School Address
+                              const Text(
+                                'Kot ise khan',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFF3498DB),
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              // Session Info
+                              const Text(
+                                'Session 2025-26',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xFF7F8C8D),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                const StudentStories(),
-              ],
-            ),
+              ),
+          // Student Stories Section
+          Container(
+            color: Colors.white,
+            child: const StudentStories(),
           ),
           // Chats list
           Expanded(
@@ -335,27 +244,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
-      ),
-      floatingActionButton: Container(
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF3498DB), Color(0xFF2980B9)],
-          ),
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF3498DB).withOpacity(0.4),
-              blurRadius: 12,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          child: const Icon(Icons.add, color: Colors.white, size: 28),
-        ),
       ),
     );
   }
