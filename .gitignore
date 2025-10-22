@@ -1,0 +1,53 @@
+# RevoSchools Flutter App
+
+## Project Overview
+This is a Flutter application for Pathways Global School Kot ise khan that provides a WhatsApp-style communication interface for students, teachers, and parents.
+
+## Key Features
+- Professional login system with credit card-style inputs
+- WhatsApp-style chat interface
+- Facebook-style student stories
+- Specialized message bubbles for different content types
+- Beautiful gradient avatars and modern UI design
+
+## Technical Details
+- **Framework**: Flutter
+- **Language**: Dart
+- **Platform**: Web (Chrome), Mobile-ready
+- **Architecture**: Modular widget-based design
+
+## Getting Started
+1. Ensure Flutter SDK is installed
+2. Run `flutter pub get` to install dependencies
+3. Run `flutter run -d chrome` to launch in browser
+4. Use default password: 2626
+
+## Project Structure
+- `lib/pages/` - Screen components
+- `lib/widgets/` - Reusable UI components
+- `lib/models/` - Data models
+- `lib/data/` - Sample data
+
+## Design System
+- Primary Color: Dark Blue-Gray (#2C3E50)
+- Accent Color: Blue Gradient (#3498DB to #2980B9)
+- Modern, professional design suitable for educational institutions
+
+## Default Login Credentials
+- Phone: Any 10-digit number
+- Password: 2626
+
+## Development Commands
+- `flutter run -d chrome` - Run in Chrome
+- `flutter test` - Run tests
+- `flutter clean` - Clean build cache
+- `flutter pub get` - Install dependencies
+
+## School Information
+**Pathways Global School Kot ise khan**
+- Professional school communication platform
+- Student-focused design
+- Modern technology integration
+
+---
+*Developed for educational purposes - RevoSchools*
