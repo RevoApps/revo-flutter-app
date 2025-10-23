@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/chat_models.dart';
 import '../widgets/chat_list_item.dart';
 import '../pages/chat_page.dart';
+import '../pages/login_page.dart';
 import '../data/school_data.dart';
 import '../widgets/student_stories.dart';
 
@@ -44,6 +45,47 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _showLogoutDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Logout'),
+          content: const Text('Are you sure you want to logout?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close dialog
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close dialog
+                _performLogout();
+              },
+              child: const Text(
+                'Logout',
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _performLogout() {
+    // Navigate back to login page
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginPage(),
+      ),
+      (route) => false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,13 +110,13 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Row(
                   children: [
-                    // School Logo
+                    // Student Photo
                     Container(
-                      width: 50,
-                      height: 50,
+                      width: 60,
+                      height: 60,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withOpacity(0.2),
@@ -83,10 +125,29 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      child: const Center(
-                        child: Text(
-                          '🏫',
-                          style: TextStyle(fontSize: 28),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.network(
+                          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+                          fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF8E24AA)),
+                              ),
+                            );
+                          },
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Center(
+                              child: Icon(
+                                Icons.person,
+                                size: 30,
+                                color: Color(0xFF8E24AA),
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ),
@@ -105,9 +166,9 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(height: 2),
                           Text(
-                            'Class: 10A | Roll No: 12345',
+                            'Class: 10 A , Roll No: 12345',
                             style: TextStyle(
-                              color: Colors.white70,
+                              color: Colors.white,
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
                             ),
@@ -115,6 +176,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
+                    // Sort Icon
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.1),
@@ -128,6 +190,34 @@ class _HomePageState extends State<HomePage> {
                         onPressed: sortChats,
                         tooltip: isSorted ? 'Reset order' : 'Sort alphabetically',
                       ),
+                    ),
+                    const SizedBox(width: 8),
+                    // Three vertical dots menu
+                    PopupMenuButton<String>(
+                      icon: const Icon(
+                        Icons.more_vert,
+                        color: Colors.white,
+                      ),
+                      onSelected: (String value) {
+                        if (value == 'logout') {
+                          _showLogoutDialog();
+                        }
+                      },
+                      itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                        const PopupMenuItem<String>(
+                          value: 'logout',
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.logout,
+                                color: Colors.red,
+                              ),
+                              SizedBox(width: 8),
+                              Text('Logout'),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -160,64 +250,71 @@ class _HomePageState extends State<HomePage> {
                     child: Row(
                       children: [
                         // Left Column - School Logo
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.08),
-                                blurRadius: 6,
-                                offset: const Offset(0, 2),
+                        Expanded(
+                          flex: 1,
+                          child: Center(
+                            child: Container(
+                              width: 60,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.08),
+                                    blurRadius: 6,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          child: const Center(
-                            child: Text(
-                              '🏫',
-                              style: TextStyle(fontSize: 26),
+                              child: const Center(
+                                child: Text(
+                                  '🏫',
+                                  style: TextStyle(fontSize: 40),
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        // Right Column - School Information
+                        // Right Column - School Information (Centered)
                         Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              // School Name
-                              const Text(
-                                'Pathways Global School',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF2C3E50),
+                          flex: 2,
+                          child: Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // School Name
+                                const Text(
+                                  'Pathways Global School',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 130, 66, 127),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 2),
-                              // School Address
-                              const Text(
-                                'Kot ise khan',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFF3498DB),
+                                const SizedBox(height: 2),
+                                // School Address
+                                const Text(
+                                  'Kot ise khan',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color.fromARGB(255, 66, 161, 224),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 2),
-                              // Session Info
-                              const Text(
-                                'Session 2025-26',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color(0xFF7F8C8D),
+                                const SizedBox(height: 2),
+                                // Session Info
+                                const Text(
+                                  'Session 2025-26',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromARGB(255, 19, 19, 19),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],

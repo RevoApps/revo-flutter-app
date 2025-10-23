@@ -123,14 +123,14 @@ class _LoginPageState extends State<LoginPage> {
                     height: 120,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                        colors: [Color(0xFF3498DB), Color(0xFF2980B9)],
+                        colors: [Color(0xFF8E24AA), Color(0xFF9C27B0)],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFF3498DB).withOpacity(0.3),
+                          color: const Color(0xFF8E24AA).withOpacity(0.3),
                           blurRadius: 20,
                           offset: const Offset(0, 10),
                         ),
@@ -158,29 +158,13 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFF3498DB),
+                      color: Color(0xFF8E24AA),
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFECF0F1),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: const Text(
-                      'Student Portal',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF7F8C8D),
-                      ),
-                    ),
-                  ),
                 ],
               ),
-              const SizedBox(height: 60),
+              const SizedBox(height: 40),
               // Login Form
               Container(
                 padding: const EdgeInsets.all(24),
@@ -206,15 +190,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Color(0xFF2C3E50),
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Enter your phone number and password',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFF7F8C8D),
-                      ),
-                    ),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 20),
                     // Phone Number Input
                     const Text(
                       'Phone Number',
@@ -226,15 +202,16 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: 12),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(10, (index) {
                         return Container(
-                          width: 30,
+                          margin: const EdgeInsets.symmetric(horizontal: 1),
+                          width: 28,
                           height: 40,
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: _phoneFocusNodes[index].hasFocus
-                                  ? const Color(0xFF3498DB)
+                                  ? const Color(0xFF8E24AA)
                                   : const Color(0xFFE9ECEF),
                               width: 2,
                             ),
@@ -248,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
                             textAlign: TextAlign.center,
                             maxLength: 1,
                             style: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF2C3E50),
                             ),
@@ -258,6 +235,7 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: const InputDecoration(
                               border: InputBorder.none,
                               counterText: '',
+                              contentPadding: EdgeInsets.zero,
                             ),
                             onChanged: (value) => _onPhoneDigitChanged(index, value),
                           ),
@@ -276,15 +254,16 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: 12),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(4, (index) {
                         return Container(
-                          width: 60,
-                          height: 60,
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          width: 28,
+                          height: 40,
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: _passwordFocusNodes[index].hasFocus
-                                  ? const Color(0xFF3498DB)
+                                  ? const Color(0xFF8E24AA)
                                   : const Color(0xFFE9ECEF),
                               width: 2,
                             ),
@@ -298,7 +277,7 @@ class _LoginPageState extends State<LoginPage> {
                             textAlign: TextAlign.center,
                             maxLength: 1,
                             style: const TextStyle(
-                              fontSize: 24,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF2C3E50),
                             ),
@@ -308,6 +287,7 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: const InputDecoration(
                               border: InputBorder.none,
                               counterText: '',
+                              contentPadding: EdgeInsets.zero,
                             ),
                             onChanged: (value) => _onPasswordDigitChanged(index, value),
                           ),
@@ -322,7 +302,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: ElevatedButton(
                         onPressed: _login,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF3498DB),
+                          backgroundColor: const Color(0xFF8E24AA),
                           foregroundColor: Colors.white,
                           elevation: 0,
                           shape: RoundedRectangleBorder(
@@ -343,24 +323,24 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFE8F4FD),
+                        color: const Color(0xFFF3E5F5),
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: const Color(0xFF3498DB).withOpacity(0.3)),
+                        border: Border.all(color: const Color(0xFF8E24AA).withOpacity(0.3)),
                       ),
                       child: const Row(
                         children: [
                           Icon(
                             Icons.info_outline,
-                            color: Color(0xFF3498DB),
+                            color: Color(0xFF8E24AA),
                             size: 20,
                           ),
                           SizedBox(width: 8),
                           Expanded(
                             child: Text(
-                              'Default password is 2626',
+                              'Developed By : Ryan Manchanda, Revo Softwares, 23 Railway Road, Moga ,M: 9501454725',
                               style: TextStyle(
-                                fontSize: 14,
-                                color: Color(0xFF3498DB),
+                                fontSize: 12,
+                                color: Color(0xFF8E24AA),
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -374,7 +354,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 40),
               // Footer
               const Text(
-                '© 2024 Pathways Global School. All rights reserved.',
+                '© 2018 Pathways Global School. All rights reserved.',
                 style: TextStyle(
                   fontSize: 12,
                   color: Color(0xFF7F8C8D),
