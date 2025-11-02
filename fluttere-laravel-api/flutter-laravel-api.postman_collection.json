@@ -1,0 +1,952 @@
+{
+	"info": {
+		"_postman_id": "7f19affc-1c45-408e-9636-63a7678ebc55",
+		"name": "flutter-laravel-api",
+		"description": "# About this collection\n\nThis collection helps you set up contract tests to ensure that two separate systems are compatible and can communicate with one another.\n\n## **Using the collection**\n\n**Step 1:** Send the sample requests and view the response and test results.\n\n**Step 2:** Replace the sample request URLs with your desired API endpoints.\n\n**Step 3:** Customize the tests in the \"Tests\" tab if needed. Don't forget to save your changes.\n\n### Resources\n\n[Scripting in Postman](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)\n\n[Test script examples](https://learning.postman.com/docs/writing-scripts/script-references/test-examples/)\n\n[Postman Sandbox API reference](https://learning.postman.com/docs/sending-requests/grpc/postman-sandbox-api/#writing-assertions)\n\n[Using the Collection Runner](https://learning.postman.com/docs/collections/running-collections/intro-to-collection-runs/)\n\n[  \n](https://postman.postman.co/documentation/24552533-5bead607-0197-4e1d-87d4-3160bc7631c1?entity=&branch=&version=)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19073259",
+		"_collection_link": "https://universal-shuttle-745988.postman.co/workspace/revo_laravel_api~9d9ddeed-608b-45a5-bf20-05e14c00d73c/collection/19073259-7f19affc-1c45-408e-9636-63a7678ebc55?action=share&source=collection_link&creator=19073259"
+	},
+	"item": [
+		{
+			"name": "get_student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Response Code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Run validations on response headers like Content-Type\r",
+							"pm.test(\"Content-Type should be JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"// The response body, including individual attributes can be evaluated for correctness\r",
+							"pm.test(\"`args` should contain the correct query params\", function () {\r",
+							"    pm.expect(json.args).to.be.an('object');\r",
+							"    pm.expect(json.args.foo).to.eql('bar');\r",
+							"    pm.expect(json.args.baz).to.eql('value');\r",
+							"});\r",
+							"\r",
+							"// Non-trivial data types like Dates can also be tested against\r",
+							"pm.test(\"Date in the header should be valid\", function () {\r",
+							"    const parsedDate = new Date(pm.response.headers.get('Date'));\r",
+							"    pm.expect(parsedDate).to.be.a('date');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/student/1292",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"1292"
+					]
+				},
+				"description": "The tests in the request validate the response code and the data returned in the response is the same as the one being sent."
+			},
+			"response": []
+		},
+		{
+			"name": "all_students",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Response Code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Run validations on response headers like Content-Type\r",
+							"pm.test(\"Content-Type should be JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"// The response body, including individual attributes can be evaluated for correctness\r",
+							"pm.test(\"`args` should contain the correct query params\", function () {\r",
+							"    pm.expect(json.args).to.be.an('object');\r",
+							"    pm.expect(json.args.foo).to.eql('bar');\r",
+							"    pm.expect(json.args.baz).to.eql('value');\r",
+							"});\r",
+							"\r",
+							"// Non-trivial data types like Dates can also be tested against\r",
+							"pm.test(\"Date in the header should be valid\", function () {\r",
+							"    const parsedDate = new Date(pm.response.headers.get('Date'));\r",
+							"    pm.expect(parsedDate).to.be.a('date');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/student/1292",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"1292"
+					]
+				},
+				"description": "The tests in the request validate the response code and the data returned in the response is the same as the one being sent."
+			},
+			"response": []
+		},
+		{
+			"name": "all_staff",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Response Code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Run validations on response headers like Content-Type\r",
+							"pm.test(\"Content-Type should be JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"// The response body, including individual attributes can be evaluated for correctness\r",
+							"pm.test(\"`args` should contain the correct query params\", function () {\r",
+							"    pm.expect(json.args).to.be.an('object');\r",
+							"    pm.expect(json.args.foo).to.eql('bar');\r",
+							"    pm.expect(json.args.baz).to.eql('value');\r",
+							"});\r",
+							"\r",
+							"// Non-trivial data types like Dates can also be tested against\r",
+							"pm.test(\"Date in the header should be valid\", function () {\r",
+							"    const parsedDate = new Date(pm.response.headers.get('Date'));\r",
+							"    pm.expect(parsedDate).to.be.a('date');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/student/1292",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"1292"
+					]
+				},
+				"description": "The tests in the request validate the response code and the data returned in the response is the same as the one being sent."
+			},
+			"response": []
+		},
+		{
+			"name": "all_management",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Response Code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Run validations on response headers like Content-Type\r",
+							"pm.test(\"Content-Type should be JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"// The response body, including individual attributes can be evaluated for correctness\r",
+							"pm.test(\"`args` should contain the correct query params\", function () {\r",
+							"    pm.expect(json.args).to.be.an('object');\r",
+							"    pm.expect(json.args.foo).to.eql('bar');\r",
+							"    pm.expect(json.args.baz).to.eql('value');\r",
+							"});\r",
+							"\r",
+							"// Non-trivial data types like Dates can also be tested against\r",
+							"pm.test(\"Date in the header should be valid\", function () {\r",
+							"    const parsedDate = new Date(pm.response.headers.get('Date'));\r",
+							"    pm.expect(parsedDate).to.be.a('date');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/student/1292",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"1292"
+					]
+				},
+				"description": "The tests in the request validate the response code and the data returned in the response is the same as the one being sent."
+			},
+			"response": []
+		},
+		{
+			"name": "all_firms",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Response Code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Run validations on response headers like Content-Type\r",
+							"pm.test(\"Content-Type should be JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"// The response body, including individual attributes can be evaluated for correctness\r",
+							"pm.test(\"`args` should contain the correct query params\", function () {\r",
+							"    pm.expect(json.args).to.be.an('object');\r",
+							"    pm.expect(json.args.foo).to.eql('bar');\r",
+							"    pm.expect(json.args.baz).to.eql('value');\r",
+							"});\r",
+							"\r",
+							"// Non-trivial data types like Dates can also be tested against\r",
+							"pm.test(\"Date in the header should be valid\", function () {\r",
+							"    const parsedDate = new Date(pm.response.headers.get('Date'));\r",
+							"    pm.expect(parsedDate).to.be.a('date');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/student/1292",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"1292"
+					]
+				},
+				"description": "The tests in the request validate the response code and the data returned in the response is the same as the one being sent."
+			},
+			"response": []
+		},
+		{
+			"name": "all_loans",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Response Code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Run validations on response headers like Content-Type\r",
+							"pm.test(\"Content-Type should be JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"// The response body, including individual attributes can be evaluated for correctness\r",
+							"pm.test(\"`args` should contain the correct query params\", function () {\r",
+							"    pm.expect(json.args).to.be.an('object');\r",
+							"    pm.expect(json.args.foo).to.eql('bar');\r",
+							"    pm.expect(json.args.baz).to.eql('value');\r",
+							"});\r",
+							"\r",
+							"// Non-trivial data types like Dates can also be tested against\r",
+							"pm.test(\"Date in the header should be valid\", function () {\r",
+							"    const parsedDate = new Date(pm.response.headers.get('Date'));\r",
+							"    pm.expect(parsedDate).to.be.a('date');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/student/1292",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"1292"
+					]
+				},
+				"description": "The tests in the request validate the response code and the data returned in the response is the same as the one being sent."
+			},
+			"response": []
+		},
+		{
+			"name": "all_vehicles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Response Code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Run validations on response headers like Content-Type\r",
+							"pm.test(\"Content-Type should be JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"// The response body, including individual attributes can be evaluated for correctness\r",
+							"pm.test(\"`args` should contain the correct query params\", function () {\r",
+							"    pm.expect(json.args).to.be.an('object');\r",
+							"    pm.expect(json.args.foo).to.eql('bar');\r",
+							"    pm.expect(json.args.baz).to.eql('value');\r",
+							"});\r",
+							"\r",
+							"// Non-trivial data types like Dates can also be tested against\r",
+							"pm.test(\"Date in the header should be valid\", function () {\r",
+							"    const parsedDate = new Date(pm.response.headers.get('Date'));\r",
+							"    pm.expect(parsedDate).to.be.a('date');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/student/1292",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"1292"
+					]
+				},
+				"description": "The tests in the request validate the response code and the data returned in the response is the same as the one being sent."
+			},
+			"response": []
+		},
+		{
+			"name": "all_documents",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Response Code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Run validations on response headers like Content-Type\r",
+							"pm.test(\"Content-Type should be JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"// The response body, including individual attributes can be evaluated for correctness\r",
+							"pm.test(\"`args` should contain the correct query params\", function () {\r",
+							"    pm.expect(json.args).to.be.an('object');\r",
+							"    pm.expect(json.args.foo).to.eql('bar');\r",
+							"    pm.expect(json.args.baz).to.eql('value');\r",
+							"});\r",
+							"\r",
+							"// Non-trivial data types like Dates can also be tested against\r",
+							"pm.test(\"Date in the header should be valid\", function () {\r",
+							"    const parsedDate = new Date(pm.response.headers.get('Date'));\r",
+							"    pm.expect(parsedDate).to.be.a('date');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/student/1292",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"1292"
+					]
+				},
+				"description": "The tests in the request validate the response code and the data returned in the response is the same as the one being sent."
+			},
+			"response": []
+		},
+		{
+			"name": "daily-receivings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Response Code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Run validations on response headers like Content-Type\r",
+							"pm.test(\"Content-Type should be JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"// The response body, including individual attributes can be evaluated for correctness\r",
+							"pm.test(\"`args` should contain the correct query params\", function () {\r",
+							"    pm.expect(json.args).to.be.an('object');\r",
+							"    pm.expect(json.args.foo).to.eql('bar');\r",
+							"    pm.expect(json.args.baz).to.eql('value');\r",
+							"});\r",
+							"\r",
+							"// Non-trivial data types like Dates can also be tested against\r",
+							"pm.test(\"Date in the header should be valid\", function () {\r",
+							"    const parsedDate = new Date(pm.response.headers.get('Date'));\r",
+							"    pm.expect(parsedDate).to.be.a('date');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/student/1292",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"1292"
+					]
+				},
+				"description": "The tests in the request validate the response code and the data returned in the response is the same as the one being sent."
+			},
+			"response": []
+		},
+		{
+			"name": "daily-expenditure",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Response Code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Run validations on response headers like Content-Type\r",
+							"pm.test(\"Content-Type should be JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"// The response body, including individual attributes can be evaluated for correctness\r",
+							"pm.test(\"`args` should contain the correct query params\", function () {\r",
+							"    pm.expect(json.args).to.be.an('object');\r",
+							"    pm.expect(json.args.foo).to.eql('bar');\r",
+							"    pm.expect(json.args.baz).to.eql('value');\r",
+							"});\r",
+							"\r",
+							"// Non-trivial data types like Dates can also be tested against\r",
+							"pm.test(\"Date in the header should be valid\", function () {\r",
+							"    const parsedDate = new Date(pm.response.headers.get('Date'));\r",
+							"    pm.expect(parsedDate).to.be.a('date');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/student/1292",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"1292"
+					]
+				},
+				"description": "The tests in the request validate the response code and the data returned in the response is the same as the one being sent."
+			},
+			"response": []
+		},
+		{
+			"name": "notices",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const json = pm.response.json();\r",
+							"\r",
+							"// Validate raw body sent in the request, be it form-data or JSON\r",
+							"pm.test(\"`form` should contain the correct form data\", function () {\r",
+							"    pm.expect(json.form).to.be.an('object');\r",
+							"    pm.expect(json.form.foo1).to.eql('bar1');\r",
+							"    pm.expect(json.form.foo2).to.eql('bar2');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "14|ovJLLlDng84rJjwf0MSaYBdRdIMFUFcRq5UmnjVI4122b3bc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "foo1",
+							"value": "bar1",
+							"type": "text"
+						},
+						{
+							"key": "foo2",
+							"value": "bar2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/notices",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"notices"
+					]
+				},
+				"description": "The tests in this request validate that the request body sent as form-data is valid."
+			},
+			"response": []
+		},
+		{
+			"name": "approvals",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const json = pm.response.json();\r",
+							"\r",
+							"// Validate raw body sent in the request, be it form-data or JSON\r",
+							"pm.test(\"`form` should contain the correct form data\", function () {\r",
+							"    pm.expect(json.form).to.be.an('object');\r",
+							"    pm.expect(json.form.foo1).to.eql('bar1');\r",
+							"    pm.expect(json.form.foo2).to.eql('bar2');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "foo1",
+							"value": "bar1",
+							"type": "text"
+						},
+						{
+							"key": "foo2",
+							"value": "bar2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/approvals",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"approvals"
+					]
+				},
+				"description": "The tests in this request validate that the request body sent as form-data is valid."
+			},
+			"response": []
+		},
+		{
+			"name": "suggestions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const json = pm.response.json();\r",
+							"\r",
+							"// Validate raw body sent in the request, be it form-data or JSON\r",
+							"pm.test(\"`form` should contain the correct form data\", function () {\r",
+							"    pm.expect(json.form).to.be.an('object');\r",
+							"    pm.expect(json.form.foo1).to.eql('bar1');\r",
+							"    pm.expect(json.form.foo2).to.eql('bar2');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "foo1",
+							"value": "bar1",
+							"type": "text"
+						},
+						{
+							"key": "foo2",
+							"value": "bar2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/suggestions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"suggestions"
+					]
+				},
+				"description": "The tests in this request validate that the request body sent as form-data is valid."
+			},
+			"response": []
+		},
+		{
+			"name": "complaints",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const json = pm.response.json();\r",
+							"\r",
+							"// Validate raw body sent in the request, be it form-data or JSON\r",
+							"pm.test(\"`form` should contain the correct form data\", function () {\r",
+							"    pm.expect(json.form).to.be.an('object');\r",
+							"    pm.expect(json.form.foo1).to.eql('bar1');\r",
+							"    pm.expect(json.form.foo2).to.eql('bar2');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "16|vaZRof2nRnBsZqKgbKXCQebLs7XuywE0m3Nolxht6a95e1e9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "foo1",
+							"value": "bar1",
+							"type": "text"
+						},
+						{
+							"key": "foo2",
+							"value": "bar2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/complaints",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"complaints"
+					]
+				},
+				"description": "The tests in this request validate that the request body sent as form-data is valid."
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://postman-echo.com"
+		}
+	]
+}
