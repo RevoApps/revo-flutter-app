@@ -1,6 +1,6 @@
 // widgets/specialized_bubbles/fee_bubble.dart
 import 'package:flutter/material.dart';
-import '../../models/message_types.dart';
+import '../../core/models/message_types.dart';
 
 class FeeBubble extends StatelessWidget {
   final MessageData message;

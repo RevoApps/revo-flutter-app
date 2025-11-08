@@ -1,6 +1,6 @@
 // widgets/chat_list_item.dart
 import 'package:flutter/material.dart';
-import '../models/chat_models.dart';
+import '../core/models/chat_models.dart';
 import 'beautiful_avatar.dart';
 
 class ChatListItem extends StatelessWidget {

@@ -1,7 +1,7 @@
 // widgets/bubble_factory.dart
 import 'package:flutter/material.dart';
-import '../models/message_types.dart';
-import '../models/chat_models.dart';
+import '../core/models/message_types.dart';
+import '../core/models/chat_models.dart';
 import 'specialized_bubbles/homework_bubble.dart';
 import 'specialized_bubbles/fee_bubble.dart';
 import 'specialized_bubbles/results_bubble.dart';

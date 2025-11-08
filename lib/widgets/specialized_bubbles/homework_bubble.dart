@@ -1,6 +1,6 @@
 // widgets/specialized_bubbles/homework_bubble.dart
 import 'package:flutter/material.dart';
-import '../../models/message_types.dart';
+import '../../core/models/message_types.dart';
 
 class HomeworkBubble extends StatelessWidget {
   final MessageData message;
